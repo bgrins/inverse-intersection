@@ -43,7 +43,7 @@ var inverseIntersection = (function() {
 		}
 		
 		// If there is an intersection, return 4 rectangles surrounding this box
-		var rectangles = filterWithArea([
+		return filterWithArea([
 			{ 
 				left: r.left, 
 				top: r.top, 
@@ -68,28 +68,27 @@ var inverseIntersection = (function() {
 				width: (r.left + r.width) - (inter.left + inter.width), height: inter.height
 			}
 		]);
-		
-		return rectangles;
 	}
 	
-	return function (parentBounds, allBounds) {
+	return function (parentRectangle, childRectangles) {
 		
-		if (!allBounds.length) {
+		if (!childRectangles.length) {
 			return [];
 		}
 		
-		var outputBounds = [parentBounds];
+		var outputRectangles = [parentRectangle];
 		
-		for (var i = 0; i < allBounds.length; i++) {
+		for (var i = 0; i < childRectangles.length; i++) {
 			var newOutputs = [];
-			for (var j = 0; j < outputBounds.length; j++) {
-				var inters = splitRectangleOnIntersection(outputBounds[j], allBounds[i]);
+			for (var j = 0; j < outputRectangles.length; j++) {
+				var inters = splitRectangleOnIntersection(outputRectangles[j], childRectangles[i]);
 				newOutputs = newOutputs.concat(inters);
 			}
-			outputBounds = newOutputs;
+			
+			outputRectangles = newOutputs;
 		}
 		
-		return outputBounds;
+		return outputRectangles;
 	};
 	
 })();
