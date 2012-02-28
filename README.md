@@ -2,7 +2,7 @@
 
 Given a parent rectangle and a collection of children rectangles on a 2D plane, how do you find a collection of non-overlapping rectangles that cover the inverse of the original set?
 
-Given the container rectangle along with the set `[A, B]` -> we want an output similar to `[1, 2, 3, 4, 5]`.
+For instance, given the container rectangle along with the set `[A, B]` -> we want an output similar to `[1, 2, 3, 4, 5]`.
 
              +----------------------------------------------------------------+
              |                                                                |
