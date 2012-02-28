@@ -44,39 +44,40 @@ var inverseIntersection = (function() {
     // If there is an intersection between the child and parent rectangle,
     // return all surrounding rectangles that contain an area.
     // If there is no intersection, return an array containing only the child.
-    function splitRectangleOnIntersection(r, mask) {
+    function splitRectangleOnIntersection(parent, child) {
 
-        var inter = intersection(mask, r);
+        var inter = intersection(parent, child);
 
         if (!inter) {
-            return [r];
+            return [parent];
         }
 
         // There will be up to 4 rectangles surrounding this box.
         // Only include ones with an area, since empty ones won't create any future intersections.
         return filterWithArea([
             { 
-                left: r.left, 
-                top: r.top, 
-                width: r.width, 
-                height: inter.top - r.top
+                left: parent.left, 
+                top: parent.top, 
+                width: parent.width, 
+                height: inter.top - parent.top
             },
             { 
-                left: r.left, 
+                left: parent.left, 
                 top: inter.top + inter.height, 
-                width: r.width, 
-                height: (r.top + r.height) - (inter.top + inter.height)
+                width: parent.width, 
+                height: (parent.top + parent.height) - (inter.top + inter.height)
             },
             {
-                left: r.left,
+                left: parent.left,
                 top: inter.top,
-                width: inter.left - r.left,
+                width: inter.left - parent.left,
                 height: inter.height
             },
             {
                 left: inter.left + inter.width,
                 top: inter.top,
-                width: (r.left + r.width) - (inter.left + inter.width), height: inter.height
+                width: (parent.left + parent.width) - (inter.left + inter.width),
+                height: inter.height
             }
         ]);
     }
