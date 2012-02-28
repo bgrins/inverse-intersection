@@ -2,7 +2,6 @@
 
 Given a parent rectangle and a collection of children rectangles on a 2D plane, how do you find a collection of non-overlapping rectangles that cover the inverse of the original set?
 
-
 Given the container rectangle along with the set `[A, B]` -> we want an output similar to `[1, 2, 3, 4, 5]`.
 
              +----------------------------------------------------------------+
@@ -46,7 +45,7 @@ Given the container rectangle along with the set `[A, B]` -> we want an output s
 ## Usage
 Try this out for size:
 
-    var parentRectangles = {top:0, left:0, width: 100, height: 100 };
+    var parentRectangle = {top:0, left:0, width: 100, height: 100 };
     var childRectangles = [{top:10, left:10, width: 10, height: 10 }, {top:80, left:80, width: 10, height: 10 }];
     
     var inverses = inverseIntersection(parentRectangle, childRectangles);
